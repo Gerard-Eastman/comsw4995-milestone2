@@ -1,0 +1,58 @@
+# verify run=5.3 label=5.3-rep2-final src=/home/claude/m2art/2026-11-09__23-34-56.app.tgz Tue Nov 10 00:12:24 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 2.0s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/a/checks/check_a_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/a/checks/check_a_2.sh
+RESULT: 7 passed, 0 failed
+== /spec/a/checks/check_a_3.sh
+RESULT: 8 passed, 0 failed
+== /spec/a/checks/check_a_4.sh
+RESULT: 11 passed, 0 failed
+== /spec/b/checks/check_b_1.sh
+RESULT: 8 passed, 0 failed
+== /spec/b/checks/check_b_2.sh
+RESULT: 7 passed, 0 failed
+== /spec/b/checks/check_b_3.sh
+RESULT: 6 passed, 0 failed
+== /spec/b/checks/check_b_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/b/checks/check_b_5.sh
+RESULT: 9 passed, 0 failed
+== /spec/c/checks/check_c_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_3.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_5.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_6.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_1.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_2.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_3.sh
+FAIL D3.1 3 writers x 30 concurrent posts: every post 201, each of 3 subscribers misses at most 1% of message.created: 1 of 90 posts did not return 201 (statuses [500])
+RESULT: 2 passed, 1 failed
+== /spec/e/checks/check_e_1.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_3.sh
+RESULT: 6 passed, 0 failed
+== /spec/e/checks/check_e_4.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_5.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_6.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_7.sh
+FAIL E7.6 channel settings: title, channel-member-rows, add member, topic, archive then unarchive (modal stays open), close: channel-settings-title: expected [data-testid="channel-settings-title"] to contain '#cfg-tu9d', got '#general'
+RESULT: 5 passed, 1 failed

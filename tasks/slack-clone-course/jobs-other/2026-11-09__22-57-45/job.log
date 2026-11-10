@@ -1,0 +1,48 @@
+Skipping image OS validation for hb__6e1cac0be8cc4a16f673e8f411387d95: docker inspect returned 1
+Running command: if command -v apt-get &>/dev/null; then  apt-get update && apt-get install -y curl build-essential git; elif command -v apk &>/dev/null; then  apk add --no-cache curl bash build-base git python3 py3-pip; elif command -v yum &>/dev/null; then  yum install -y curl git gcc make; elif command -v dnf &>/dev/null; then  dnf install -y curl git gcc make; else  echo "Warning: No known package manager found, assuming build tools are available" >&2; fi
+Command outputs captured
+Running command: set -euo pipefail; if ! command -v uv >/dev/null 2>&1; then  curl -LsSf https://astral.sh/uv/0.7.13/install.sh | sh; fi && if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null; then  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"; fi && if [ -f "$HOME/.local/bin/env" ]; then source "$HOME/.local/bin/env"; fi && export PATH="$HOME/.local/bin:$PATH" && export UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4; for i in 1 2 3; do uv tool install /tmp/mini-swe-agent-src --with 'litellm[proxy]' && break; echo "uv install retry $i"; sleep 15; done; mini-swe-agent --help
+Command failed
+Trial final_task__mvJGWEM failed: Command failed (exit 130): set -euo pipefail; if ! command -v uv >/dev/null 2>&1; then  curl -LsSf https://astral.sh/uv/0.7.13/install.sh | sh; fi && if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null; then  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"; fi && if [ -f "$HOME/.local/bin/env" ]; then source "$HOME/.local/bin/env"; fi && export PATH="$HOME/.local/bin:$PATH" && export UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4; for i in 1 2 3; do uv tool install /tmp/mini-swe-agent-src --with 'litellm[proxy]' && break; echo "uv install retry $i"; sleep 15; done; mini-swe-agent --help
+stdout: downloading uv 0.7.13 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, ba ... [461 chars truncated] ... ding psycopg-binary (6.5MiB)
+ Downloading psycopg-binary
+Downloading granian (4.8MiB)
+ Downloading granian
+Downloading cryptography (4.5MiB)
+ Downloading cryptography
+Downloading uvloop (4.2MiB)
+ Downloading uvloop
+Downloading hf-xet (3.9MiB)
+ Downloading litellm
+Downloading tokenizers (3.4MiB)
+ Downloading hf-xet
+Downloading pyroscope-io (3.1MiB)
+ Downloading tokenizers
+Downloading openai (2.3MiB)
+ Downloading pyroscope-io
+Downloading pydantic-core (2.0MiB)
+ Downloading openai
+Downloading aiohttp (1.8MiB)
+ Downloading pydantic-core
+Downloading pygments (1.2MiB)
+ Downloading pygments
+ Downloading aiohttp
+Downloading soundfile (1.2MiB)
+Downloading tiktoken (1.1MiB)
+ Downloading soundfile
+ Downloading tiktoken
+ Downloading polars-runtime-32
+
+
+stderr: None
+Collecting main service artifacts
+Not retrying trial because the maximum number of retries has been reached

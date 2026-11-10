@@ -1,0 +1,18 @@
+{
+ "1.1-1": "got around score-only output 8 times (ran the checker's Python directly, which defaulted to verbose)",
+ "1.1-2": "got around score-only output 3 times (FEEDBACK=verbose on the checker's Python)",
+ "1.2-1": "got around score-only output 2 times",
+ "1.3-1": "got around score-only output 6 times; 1 command timeout",
+ "1.3-2": "got around score-only output 15 times; E3.6 (IRC bridging during a node kill) flaky in my reruns: failed 1 of 5",
+ "2.1-2": "pip install of aiohttp hit the 30 s command limit; agent pointed start.sh at /opt/cua-venv's Python (already has aiohttp)",
+ "4-1": "own design without base.md: DB file in /app (its --fresh restart never emptied it); 10 MiB uploads rejected (aiohttp's 1 MiB default body limit); 3 command timeouts",
+ "4-2": "own http.server stack; port 6379 held by a fake 'Redis' (a socket that accepts and closes) to pass D2.1; submitted with E3/E5/E6 failing in its own checks",
+ "5.1-1": "submitted with 37 A/B rules broken in its last regression run (19 on a fresh DB); E7 0/6; D1.3 resume fails",
+ "5.1-2": "hit the $3 cost limit in E; start.sh never starts irc.py (it ran it by hand), so all IRC rules fail on a fresh boot",
+ "5.2-1": "submitted with E.5, E.6 and E.7 failing in its own checks; regression rose from 4 to 8 broken during C/D/E, back to 0; 7 command timeouts",
+ "5.2-2": "regression 48 -> 20 -> 7 -> 4 -> 0 broken; 9 command timeouts; one E.7 rule fails only on a fresh DB",
+ "5.3-1": "its own last B.1 and B.3 runs (made while building B) still had failures it never revisited, but A and B pass on a fresh DB; 17 command timeouts; 32.6 min",
+ "5.3-2": "hit the $3 cost limit at 35 min (E.7 done); one 500 under the D3 load test on a fresh DB; 18 command timeouts",
+ "2.3-1": "earlier attempts of 2.3 died in setup (network/VPN); 6 command timeouts",
+ "2.3-2": "earlier attempts of 2.3 died in setup (network/VPN); 5 command timeouts"
+}

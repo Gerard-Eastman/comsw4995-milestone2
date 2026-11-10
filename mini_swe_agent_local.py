@@ -53,7 +53,10 @@ class MiniSweAgentLocal(MiniSweAgent):
         await self.exec_as_root(
             environment,
             command=(
-                "if command -v apt-get &>/dev/null; then"
+                # the task image already has curl, git and gcc: skip the slow apt-get update when they are present
+                "if command -v curl >/dev/null && command -v git >/dev/null && command -v gcc >/dev/null; then"
+                "  echo 'build tools already present';"
+                " elif command -v apt-get &>/dev/null; then"
                 "  apt-get update && apt-get install -y curl build-essential git;"
                 " elif command -v apk &>/dev/null; then"
                 "  apk add --no-cache curl bash build-base git python3 py3-pip;"
@@ -83,7 +86,9 @@ class MiniSweAgentLocal(MiniSweAgent):
                 " fi && "
                 'if [ -f "$HOME/.local/bin/env" ]; then source "$HOME/.local/bin/env"; fi && '
                 'export PATH="$HOME/.local/bin:$PATH" && '
-                f"uv tool install {remote_src} --with 'litellm[proxy]' && "
+                # retry the install with a longer HTTP timeout: PyPI downloads from the container time out on a slow network
+                "export UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4; "
+                f"for i in 1 2 3; do uv tool install {remote_src} --with 'litellm[proxy]' && break; echo \"uv install retry $i\"; sleep 15; done; "
                 "mini-swe-agent --help"
             ),
         )

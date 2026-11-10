@@ -1,0 +1,18 @@
+# verify run=1.3 label=recheck-1.3-rep2 src=/home/claude/m2art/2026-11-09__19-03-28.app.tgz Mon Nov  9 22:21:54 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 2.0s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/e/checks/check_e_1.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_3.sh
+RESULT: 6 passed, 0 failed
+== /spec/e/checks/check_e_4.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_5.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_6.sh
+RESULT: 7 passed, 0 failed

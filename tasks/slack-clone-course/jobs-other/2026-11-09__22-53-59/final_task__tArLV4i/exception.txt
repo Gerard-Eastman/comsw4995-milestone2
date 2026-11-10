@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 351, in run
+    await self._prepare()
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 389, in _prepare
+    await self._setup_agent()
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 1180, in _setup_agent
+    await asyncio.wait_for(
+    ...<2 lines>...
+    )
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 622, in setup
+    await self.install(environment)
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/mini_swe_agent_local.py", line 53, in install
+    await self.exec_as_root(
+    ...<15 lines>...
+    )
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 579, in exec_as_root
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+        environment, command, user="root", env=env, cwd=cwd, timeout_sec=timeout_sec
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 559, in _exec
+    raise self._classify_exec_error(command, result)
+harbor.agents.installed.base.NonZeroAgentExitCodeError: Command failed (exit 130): if command -v apt-get &>/dev/null; then  apt-get update && apt-get install -y curl build-essential git; elif command -v apk &>/dev/null; then  apk add --no-cache curl bash build-base git python3 py3-pip; elif command -v yum &>/dev/null; then  yum install -y curl git gcc make; elif command -v dnf &>/dev/null; then  dnf install -y curl git gcc make; else  echo "Warning: No known package manager found, assuming build tools are available" >&2; fi
+stdout: Get:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+Get:2 https://deb.nodesource.com/node_22.x nodistro InRelease [12.1 kB]
+Get:3 https://deb.nodesource.com/node_22.x nodistro/main arm64 Packages [12.9 kB]
+Get:4 http://ports.ubuntu.co ... [801 chars truncated] ... 2 kB]
+Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [3383 kB]
+Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [669 B]
+Get:16 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+Get:17 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [102 kB]
+Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [3157 kB]
+Get:20 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1655 kB]
+Get:21 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1492 kB]
+
+
+stderr: None

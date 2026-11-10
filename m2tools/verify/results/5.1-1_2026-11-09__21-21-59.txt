@@ -1,0 +1,62 @@
+# verify run=5.1 label=5.1-rep1-a1 src=/home/claude/m2art/2026-11-09__21-21-59.app.tgz Mon Nov  9 22:14:25 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 1.7s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/checks/regression.sh
+REGRESSION FAIL channels B1.4 PATCH /api/channels/{id} {topic}: member 200 {channel}; non-member non-owner 403; 251 chars 400: non-member sets topic: expected 403, got status 200, body {"channel": {"id": 27, "workspace_id": 13, "name": "ch-19sedlej", "is_private": false, "is_dm": false, "topic": "nope", "is_archived": false, "created_at": "202
+REGRESSION FAIL channels B1.5 leave 200 {channel}, twice is still 200; members list 200 {members:[UserObj]}: leave: expected 200, got status 403, body {"error": "forbidden"}
+REGRESSION FAIL channels B1.7 archived channels hidden from workspace detail unless ?include_archived=1 (or true): archived channel listed by default
+REGRESSION FAIL channels B2.3 GET messages 200 {messages, next_cursor} newest-first; limit pages through all, last page next_cursor null: 5 messages at limit=2 should take 3 pages, took 1
+REGRESSION FAIL channels B2.4 cursor from one node works on another and is not shifted by new messages: expected a next_cursor string after page 1
+REGRESSION FAIL channels B2.5 bad cursor 400; limit 0, 201, 'abc' -> 400; limit 200 ok; default limit is 50: malformed cursor: expected 400, got status 200, body {"messages": [], "next_cursor": null}
+REGRESSION FAIL channels B2.7 replies paging: 5 replies at limit=2 -> 2,2,1 oldest-first across nodes; bad cursor/limit 400: limit=2 paging gave [22, 23, 24, 25, 26] in 1 pages, want [22, 23, 24, 25, 26] in 3 pages (oldest-first)
+REGRESSION FAIL channels B3.4 search workspace_id filter and paging with limit/cursor: workspace_id filter should give 2 results, got 3
+REGRESSION FAIL channels B3.5 pins paging: 3 pins at limit=2 -> 2 newest, then 1 with next_cursor null; bad cursor/limit 400: page 1 of 3 pins at limit=2 needs a next_cursor, got None
+REGRESSION FAIL channels B3.6 search validation: bad cursor 400; limit 0/abc 400; missing or empty q 400: malformed cursor: expected 400, got status 200, body {"results": [], "next_cursor": null}
+REGRESSION FAIL channels B4.5 POST read {last_read_event_id} clears counts, never moves backwards; workspace detail embeds read_state: mark read: expected 200, got status 403, body {"error": "forbidden"}
+REGRESSION FAIL channels B5.3 event kinds: message.reply, member.joined, member.left, channel.updated, channel.archived, channel.unarchived: carl leaves: expected 200, got status 403, body {"error": "forbidden"}
+REGRESSION FAIL channels B5.4 resume on a different node replays events after since_event_id in order, then {type:'resumed', head_event_id}: replayed event_ids [], want [1, 2, 3]
+REGRESSION FAIL channels B5.6 archived channel is read-only: post, edit, topic, pin, react -> 423; reads 200; unarchive restores: while archived: {'post': 423, 'edit': 423, 'topic': 200, 'pin': 200, 'react': 423} (want 423 for each)
+REGRESSION FAIL channels B5.7 non-member subscribe/resume on a private channel -> error frame and no events: subscribe on a private channel by a non-member: want an error frame, got ['subscribed']
+REGRESSION: 19 broken
+== /spec/c/checks/check_c_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_3.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_5.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_6.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_1.sh
+FAIL D1.3 a client of the killed node reconnects to 8002, sends resume, gets every missed event in order then resumed: replay should be event_ids [2, 3, 4], got []
+RESULT: 3 passed, 1 failed
+== /spec/d/checks/check_d_2.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_3.sh
+RESULT: 3 passed, 0 failed
+== /spec/e/checks/check_e_1.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_3.sh
+RESULT: 6 passed, 0 failed
+== /spec/e/checks/check_e_4.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_5.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_6.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_7.sh
+FAIL E7.1 workspace settings: member-row + role-badge per member; tabs show exactly one pane; close hides: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.2 as owner, role-select -> admin PATCHes the role; the role-badge and the server show admin: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.3 Invitations tab: create-invitation-btn -> form; submit adds an invitation-code that another user can accept: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.4 General tab: name + join mode prefilled; workspace-general-submit saves; header shows the new name after reload: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.5 join-workspace-form: a valid code joins and switches workspace; an unknown code shows join-workspace-error: timed out (an endpoint took too long or hung)
+FAIL E7.6 channel settings: title, channel-member-rows, add member, topic, archive then unarchive (modal stays open), close: not run, check time budget used up (a slow endpoint?)
+RESULT: 0 passed, 6 failed

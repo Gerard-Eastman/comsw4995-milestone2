@@ -1,0 +1,20 @@
+Skipping image OS validation for hb__6e1cac0be8cc4a16f673e8f411387d95: docker inspect returned 1
+Running command: if command -v apt-get &>/dev/null; then  apt-get update && apt-get install -y curl build-essential git; elif command -v apk &>/dev/null; then  apk add --no-cache curl bash build-base git python3 py3-pip; elif command -v yum &>/dev/null; then  yum install -y curl git gcc make; elif command -v dnf &>/dev/null; then  dnf install -y curl git gcc make; else  echo "Warning: No known package manager found, assuming build tools are available" >&2; fi
+Command failed
+Trial final_task__tArLV4i failed: Command failed (exit 130): if command -v apt-get &>/dev/null; then  apt-get update && apt-get install -y curl build-essential git; elif command -v apk &>/dev/null; then  apk add --no-cache curl bash build-base git python3 py3-pip; elif command -v yum &>/dev/null; then  yum install -y curl git gcc make; elif command -v dnf &>/dev/null; then  dnf install -y curl git gcc make; else  echo "Warning: No known package manager found, assuming build tools are available" >&2; fi
+stdout: Get:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease [256 kB]
+Get:2 https://deb.nodesource.com/node_22.x nodistro InRelease [12.1 kB]
+Get:3 https://deb.nodesource.com/node_22.x nodistro/main arm64 Packages [12.9 kB]
+Get:4 http://ports.ubuntu.co ... [801 chars truncated] ... 2 kB]
+Get:14 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [3383 kB]
+Get:15 http://ports.ubuntu.com/ubuntu-ports noble-backports/multiverse arm64 Packages [669 B]
+Get:16 http://ports.ubuntu.com/ubuntu-ports noble-backports/main arm64 Packages [49.0 kB]
+Get:17 http://ports.ubuntu.com/ubuntu-ports noble-backports/universe arm64 Packages [36.3 kB]
+Get:18 http://ports.ubuntu.com/ubuntu-ports noble-security/multiverse arm64 Packages [102 kB]
+Get:19 http://ports.ubuntu.com/ubuntu-ports noble-security/restricted arm64 Packages [3157 kB]
+Get:20 http://ports.ubuntu.com/ubuntu-ports noble-security/universe arm64 Packages [1655 kB]
+Get:21 http://ports.ubuntu.com/ubuntu-ports noble-security/main arm64 Packages [1492 kB]
+
+
+stderr: None
+Collecting main service artifacts

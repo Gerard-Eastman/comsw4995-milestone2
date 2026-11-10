@@ -1,0 +1,12 @@
+# verify run=1.2 label=1.2-rep2-a1 src=/home/claude/m2art/2026-11-09__18-53-27.app.tgz Mon Nov  9 22:17:26 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 1.7s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/d/checks/check_d_1.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_2.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_3.sh
+RESULT: 3 passed, 0 failed

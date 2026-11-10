@@ -1,0 +1,18 @@
+# verify run=1.1 label=1.1-rep1-a1 src=/home/claude/m2art/2026-11-09__18-45-32.app.tgz Mon Nov  9 22:16:58 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 1.7s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/c/checks/check_c_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_3.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_5.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_6.sh
+RESULT: 4 passed, 0 failed

@@ -1,0 +1,5 @@
+21:21:58 run 5.1 repeat 1 started (official); log: m2logs/20261109-212158-run5.1-rep1-official.log
+21:22:18 run 5.1 repeat 2 started (official); log: m2logs/20261109-212158-run5.1-rep2-official.log
+Waiting for 2 repeat(s) of run 5.1 (up to ~60 min). Follow one with: tail -f m2logs/20261109-212158-run5.1-rep1-official.log
+2026-11-09 21:54 run=5.1 repeat=1 tag=official job=jobs/2026-11-09__21-21-59 cost=$2.02 exit=1 spec="m2-v3 run=5.1 feedback=verbose"
+2026-11-09 22:01 run=5.1 repeat=2 tag=official job=jobs/2026-11-09__21-22-19 cost=$3.02 exit=1 spec="m2-v3 run=5.1 feedback=verbose"

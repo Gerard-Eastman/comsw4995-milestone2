@@ -1,0 +1,19 @@
+spec -> milestone-specs/milestone-2-specs (left in place for the trial; not cleaned up after)
+  1/1 Mean: 0.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:10:26 0:00:00
+adhoc • mini-swe-agent-local • gpt-5.6-luna
+┏━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━┓
+┃ Trials ┃ Exceptions ┃  Mean ┃
+┡━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━┩
+│      0 │          0 │ 0.000 │
+└────────┴────────────┴───────┘
+
+Job Info
+Total runtime: 10m 26s
+Results written to /Users/gerbear/Desktop/Adv software w 
+AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__19-03-28/result.
+json
+Inspect results by running `harbor view /Users/gerbear/Desktop/Adv software w 
+AI/course_milestone_2/tasks/slack-clone-course/jobs`
+Share results by running `harbor upload /Users/gerbear/Desktop/Adv software w 
+AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__19-03-28`
+

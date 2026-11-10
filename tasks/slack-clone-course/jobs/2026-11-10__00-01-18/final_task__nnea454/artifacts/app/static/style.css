@@ -1,0 +1,9 @@
+[hidden] { display: none !important; }
+[data-button-role="primary"]   { background: #007a5a !important; color: #ffffff !important; border: 0; }
+[data-button-role="danger"]    { background: #e01e5a !important; color: #ffffff !important; border: 0; }
+[data-button-role="secondary"] { background: #1264a3 !important; color: #ffffff !important; border: 0; }
+.layout  { display: grid; grid-template-columns: 240px 1fr auto; height: 100vh; margin: 0; }
+.sidebar { background: #3f0e40; color: #ffffff; overflow-y: auto; }
+.thread-panel { width: 340px; border-left: 1px solid #ddd; }
+.modal   { position: fixed; inset: 0; background: rgba(0,0,0,.4); display: flex; align-items: center; justify-content: center; }
+body{font-family:Arial;margin:0}.channel-entry{padding:8px;cursor:pointer}.message-list{padding:20px;overflow:auto}.message{padding:10px;border-bottom:1px solid #eee}.avatar{display:inline-flex;border-radius:50%;background:#36c;color:#fff;width:28px;height:28px;align-items:center;justify-content:center;margin-right:8px}.author{font-weight:bold;margin-right:10px}.toolbar{display:inline-flex;gap:4px;margin-left:12px}.reactions button{margin:4px}.empty-copy{padding:30px;color:#666}

@@ -1,0 +1,109 @@
+{
+    "id": "ff2c17d4-bad8-4b33-8bc9-a0a995ef992a",
+    "task_name": "abundant/slack-clone",
+    "trial_name": "final_task__v2xJqK7",
+    "trial_uri": "file:///Users/gerbear/Desktop/Adv%20software%20w%20AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__21-21-09/final_task__v2xJqK7",
+    "task_id": {
+        "path": "tasks/slack-clone-course/course-staff-files/final_task"
+    },
+    "source": null,
+    "task_checksum": "4ea496154ef58d348e0aa2706c9ac1f7c33c920590903c1ca80382f692fc892d",
+    "config": {
+        "task": {
+            "path": "tasks/slack-clone-course/course-staff-files/final_task",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "final_task__v2xJqK7",
+        "trials_dir": "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__21-21-09",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 8.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mini_swe_agent_local:MiniSweAgentLocal",
+            "import_path": null,
+            "model_name": "openai/gpt-5.6-luna",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "config_file": "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/tasks/slack-clone-course/course-staff-files/final_task/agent_llm_config/mswea-openai-gpt-5.6-luna-no-reasoning.yaml",
+                "cost_limit": 3
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "bd18e1c4-e1f4-42fb-bf70-f9445053bf22"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent-local",
+        "version": "2.4.6",
+        "model_info": {
+            "name": "gpt-5.6-luna",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 12607297,
+        "n_cache_tokens": 12470539,
+        "n_output_tokens": 65078,
+        "cost_usd": 2.8595083000000017,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": null,
+    "started_at": "2026-11-10T02:21:11.545642Z",
+    "finished_at": "2026-11-10T03:03:22.401622Z",
+    "environment_setup": {
+        "started_at": "2026-11-10T02:21:11.642768Z",
+        "finished_at": "2026-11-10T02:21:50.317342Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-10T02:21:50.317639Z",
+        "finished_at": "2026-11-10T02:37:08.310037Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-10T02:37:08.321501Z",
+        "finished_at": "2026-11-10T03:03:09.325213Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

@@ -1,0 +1,20 @@
+{
+    "task": {
+        "path": "tasks/slack-clone-course/course-staff-files/final_task"
+    },
+    "trial_name": "final_task__ZY9iP6q",
+    "trials_dir": "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__22-07-11",
+    "agent_setup_timeout_multiplier": 8.0,
+    "agent": {
+        "name": "mini_swe_agent_local:MiniSweAgentLocal",
+        "model_name": "openai/gpt-5.6-luna",
+        "kwargs": {
+            "config_file": "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/tasks/slack-clone-course/course-staff-files/final_task/agent_llm_config/mswea-openai-gpt-5.6-luna-no-reasoning.yaml",
+            "cost_limit": 3
+        }
+    },
+    "verifier": {
+        "disable": true
+    },
+    "job_id": "4c3a4274-b9ea-4103-a8c9-8f98e9e18b05"
+}

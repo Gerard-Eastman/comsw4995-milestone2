@@ -1,0 +1,55 @@
+# verify run=5.1 label=5.1-rep2-a1 src=/home/claude/m2art/2026-11-09__21-22-19.app.tgz Mon Nov  9 22:15:24 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 2.0s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/checks/regression.sh
+REGRESSION: 0 broken
+== /spec/c/checks/check_c_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_3.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_5.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_6.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_1.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_2.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_3.sh
+RESULT: 3 passed, 0 failed
+== /spec/e/checks/check_e_1.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_2.sh
+FAIL E2.1 PASS/NICK/USER with a valid token -> 001, 002, 003, 004, 005, then 422: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E2.2 bad token (or no PASS) -> 464 then the connection is closed: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E2.3 NICK already in use -> 433 and the connection stays open; another NICK + USER then registers: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E2.4 PING x -> ':huddle PONG huddle :x'; QUIT closes without an error reply and frees the nick: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E2.5 unknown command -> 421 (connection stays open); commands before registration -> 451: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+RESULT: 0 passed, 5 failed
+== /spec/e/checks/check_e_3.sh
+FAIL E3.1 JOIN #slug/channel -> JOIN echo, 332/331, 353 (with your nick), 366, in that order: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E3.2 JOIN unknown, hyphenated (#slug-general) or private-not-member channel -> 403: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E3.3 NAMES, TOPIC, WHO, LIST, MODE are answered with their numerics and keep the connection open: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E3.4 IRC PRIVMSG commits a message with the next dense event_id (mixed with web posts); not joined -> 442: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E3.5 web posts reach joined IRC clients within 2s as ':<user>!<user>@huddle PRIVMSG #c :body'; no echo to the sender: nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+FAIL E3.6 with node 1 SIGKILLed, bridging still works both ways (8000 -> IRC, IRC -> WebSocket on 8002): nothing is listening on port 6667 (is /app/irc.py running? see /tmp/irc.log)
+RESULT: 0 passed, 6 failed
+== /spec/e/checks/check_e_4.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_5.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_6.sh
+FAIL E6.4 open-thread-btn opens thread-panel; a reply appears there and the parent shows '1 reply' then '2 replies': parent reply-count after the second reply: expected [data-testid="message"][data-message-id="296"] .reply-count to contain '2 replies', got '1 reply'
+RESULT: 6 passed, 1 failed
+== /spec/e/checks/check_e_7.sh
+FAIL E7.1 workspace settings: member-row + role-badge per member; tabs show exactly one pane; close hides: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.2 as owner, role-select -> admin PATCHes the role; the role-badge and the server show admin: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.3 Invitations tab: create-invitation-btn -> form; submit adds an invitation-code that another user can accept: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])
+FAIL E7.4 General tab: name + join mode prefilled; workspace-general-submit saves; header shows the new name after reload: after workspace-settings-btn: #workspace-settings-modal did not become visible within 4s (page errors: [])

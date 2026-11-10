@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huddle</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="app" class="layout">
+  <aside class="sidebar">
+    <header data-testid="workspace-header"><span class="ws-name"></span>
+      <button type="button" data-testid="workspace-settings-btn" data-button-role="secondary">Settings</button></header>
+    <div class="me"><span data-testid="current-user"></span>
+      <button type="button" data-testid="logout-btn" data-button-role="danger">Log out</button></div>
+    <h3>Channels <button type="button" data-testid="new-channel-btn" data-button-role="secondary">+</button></h3>
+    <ul data-testid="channel-list"></ul>
+    <h3>Direct messages</h3>
+    <ul data-testid="dms-list"></ul>
+    <form data-testid="join-workspace-form"><input name="code" placeholder="Invitation code">
+      <button type="submit" data-testid="join-workspace-submit" data-button-role="primary">Join</button>
+      <div data-testid="join-workspace-error" class="error" role="alert" hidden></div></form>
+  </aside>
+  <main class="main">
+    <div data-testid="empty-state-create-workspace" class="empty-state" hidden>
+      <p>You are not in any workspace yet. Create one to get started.</p>
+      <form data-testid="workspace-create-form"><input name="slug" placeholder="acme">
+        <input name="name" placeholder="Acme Inc"><button type="submit">Create workspace</button></form>
+    </div>
+    <header class="channel-header"><h2 data-testid="channel-title"></h2><span data-testid="channel-topic"></span>
+      <button type="button" data-testid="channel-settings-btn" data-button-role="secondary">Channel settings</button></header>
+    <div data-testid="message-list" class="message-list"></div>
+    <form class="composer"><input data-testid="message-input" name="body" placeholder="Message" autocomplete="off">
+      <button type="submit" data-testid="send-btn" data-button-role="primary">Send</button></form>
+  </main>
+  <section data-testid="thread-panel" class="thread-panel" hidden>
+    <header>Thread <button type="button" data-testid="close-thread" data-button-role="secondary">Close</button></header>
+    <div class="thread-messages"></div>
+    <form><input data-testid="thread-input" name="reply" placeholder="Reply" autocomplete="off">
+      <button type="submit" data-testid="thread-send" data-button-role="primary">Reply</button></form>
+  </section>
+</div>
+<div id="auth-modal" class="modal">
+  <form data-testid="auth-form" data-mode="login">
+    <h2 class="auth-title">Log in to Huddle</h2>
+    <input name="username" placeholder="Username" autocomplete="username">
+    <input name="password" type="password" placeholder="Password" autocomplete="current-password">
+    <input name="display_name" class="signup-only" placeholder="Display name (optional)">
+    <div class="error" role="alert"></div>
+    <button type="submit" data-testid="auth-submit" data-button-role="primary">Log in</button>
+    <button type="button" data-testid="auth-toggle">Need an account? Sign up</button>
+  </form>
+</div>
+<div id="create-channel-modal" class="modal" hidden>
+  <form data-testid="create-channel-form">
+    <h2>Create a channel</h2>
+    <input name="name" placeholder="channel-name" autocomplete="off">
+    <label><input type="checkbox" name="is_private" data-testid="create-channel-private"> Private</label>
+    <div class="error" role="alert"></div>
+    <button type="submit" data-testid="create-channel-submit" data-button-role="primary">Create</button>
+    <button type="button" data-testid="create-channel-cancel" data-button-role="secondary">Cancel</button>
+  </form>
+</div>
+<div id="channel-settings-modal" class="modal" hidden>
+  <div class="modal-box">
+    <h2 data-testid="channel-settings-title"></h2>
+    <button type="button" data-testid="channel-settings-close" data-button-role="secondary">Close</button>
+    <ul data-testid="channel-members-list"></ul>
+    <form data-testid="channel-add-member-form"><input data-testid="channel-add-member-input" name="username">
+      <button type="submit" data-testid="channel-add-member-submit" data-button-role="primary">Add</button></form>
+    <form class="topic-form"><input data-testid="channel-topic-input" name="topic">
+      <button type="submit" data-testid="channel-topic-submit" data-button-role="primary">Set topic</button></form>
+    <button type="button" data-testid="archive-channel-btn" data-button-role="danger">Archive</button>
+    <button type="button" data-testid="unarchive-channel-btn" data-button-role="secondary">Unarchive</button>
+  </div>
+</div>
+<div id="workspace-settings-modal" class="modal" hidden>
+  <div class="modal-box">
+    <button type="button" data-testid="workspace-settings-close" data-button-role="secondary">Close</button>
+    <nav><button type="button" data-testid="settings-tab-members">Members</button>
+      <button type="button" data-testid="settings-tab-invitations">Invitations</button>
+      <button type="button" data-testid="settings-tab-general">General</button></nav>
+    <div data-testid="settings-pane-members"></div>
+    <div data-testid="settings-pane-invitations" hidden>
+      <button type="button" data-testid="create-invitation-btn" data-button-role="secondary">New invitation</button>
+      <form id="create-invitation-form" data-testid="create-invitation-form" hidden><input name="max_uses" type="number" value="1">
+        <button type="submit" data-testid="create-invitation-submit" data-button-role="primary">Create</button></form>
+      <ul data-testid="invitations-list"></ul>
+    </div>
+    <div data-testid="settings-pane-general" hidden>
+      <form class="general-form"><input data-testid="workspace-name-input" name="name">
+        <select data-testid="workspace-join-mode" name="join_mode"><option value="open">open</option><option value="invite_only">invite_only</option></select>
+        <button type="submit" data-testid="workspace-general-submit" data-button-role="primary">Save</button></form>
+    </div>
+  </div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

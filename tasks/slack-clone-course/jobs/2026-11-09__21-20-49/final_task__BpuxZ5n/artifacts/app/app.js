@@ -1,0 +1,43 @@
+const $=s=>document.querySelector(s);
+const qt=new URLSearchParams(location.search).get('token');if(qt)localStorage.setItem('huddle.token',qt);
+const token=()=>localStorage.getItem('huddle.token');
+async function api(path,opt={}){opt.headers={...(opt.headers||{}),'Authorization':'Bearer '+token(),'Content-Type':'application/json'};let r=await fetch('/api'+path,opt),j=await r.json().catch(()=>({}));if(!r.ok)throw j;return j}
+let state={cid:null,ws:null};
+function showApp(){$('#auth-modal').style.display='none';$('#app').style.display='flex';load()}
+async function load(){
+ try{
+  let me=await api('/auth/me');$('[data-testid=current-user]').textContent=me.user.username;
+  let x=await api('/workspaces');
+  if(!x.workspaces.length){$('[data-testid=empty-state-create-workspace]').hidden=false;return}
+  let w=await api('/workspaces/'+x.workspaces[0].slug);state.workspace=w.workspace;state.slug=w.workspace.slug;
+  $('[data-testid=workspace-header]').textContent=w.workspace.name;
+  let list=$('[data-testid=channel-list]');list.innerHTML='';
+  w.channels.forEach(c=>{let e=document.createElement('div');e.className='channel-entry';e.dataset.testid='channel-entry';e.dataset.channelId=c.id;e.dataset.channelName=c.name;e.textContent='#'+c.name;e.onclick=()=>select(c);list.append(e)});
+  if(w.channels[0])select(w.channels[0]);
+ }catch(e){console.error(e)}
+}
+async function select(c){state.cid=c.id;$('[data-testid=channel-title]').textContent='#'+c.name;$('[data-testid=channel-topic]').textContent=c.topic||'';let x=await api('/channels/'+c.id+'/messages'),l=$('[data-testid=message-list]');l.innerHTML='';if(!x.messages.length){l.textContent='No messages yet. Start the conversation!';return}x.messages.slice().reverse().forEach(render)}
+function render(m){
+ let e=document.createElement('div');e.className='message';e.dataset.testid='message';e.dataset.messageId=m.id;
+ let reactions=(m.reactions||[]).map(r=>'<button class="reaction-chip" data-testid="reaction-chip" data-emoji="'+r.emoji+'">'+r.emoji+' '+r.count+'</button>').join('');
+ e.innerHTML='<b>'+((m.author||{}).username||'User')+'</b> <span class="message-body" data-testid="message-body"></span><span class="edited">'+(m.edited_at?' (edited)':'')+'</span><span> '+new Date(m.created_at).toLocaleString()+'</span><div class="message-actions"><button data-action="edit">Edit</button><button data-action="delete">Delete</button></div><button data-testid="open-thread-btn"> <span class="reply-count">'+m.reply_count+' '+(m.reply_count==1?'reply':'replies')+'</span></button><button data-testid="reaction-button">😀</button><span class="reactions">'+reactions+'</span>';
+ e.querySelector('.message-body').textContent=m.body;
+ e.querySelector('[data-action=edit]').onclick=()=>{let body=e.querySelector('.message-body'),inp=document.createElement('input');inp.name='edit-body';inp.value=body.textContent;body.replaceWith(inp);inp.focus();inp.onkeydown=async z=>{if(z.key==='Enter'){let x=await api('/messages/'+m.id,{method:'PATCH',body:JSON.stringify({body:inp.value})});renderReplace(x.message,e)}}};
+ e.querySelector('[data-action=delete]').onclick=async()=>{await api('/messages/'+m.id,{method:'DELETE'});e.remove()};
+ e.querySelector('[data-testid=open-thread-btn]').onclick=()=>openThread(m,e);
+ let rb=e.querySelector('[data-testid=reaction-button]');rb.onclick=()=>{let p=document.createElement('span');p.dataset.testid='emoji-picker';['😀','😂','😍','👍','🎉','❤️','🔥','😄','🤔'].forEach(em=>{let q=document.createElement('button');q.dataset.testid='emoji-option';q.textContent=em;q.onclick=async()=>{let x=await api('/messages/'+m.id+'/reactions',{method:'POST',body:JSON.stringify({emoji:em})});p.remove();renderReplace({...m,reactions:x.reactions},e)};p.append(q)});e.append(p)};
+ e.querySelectorAll('[data-testid=reaction-chip]').forEach(ch=>ch.onclick=async()=>{let x=await api('/messages/'+m.id+'/reactions/'+encodeURIComponent(ch.dataset.emoji),{method:'DELETE'});renderReplace({...m,reactions:x.reactions},e)});
+ $('[data-testid=message-list]').append(e)
+}
+function renderReplace(m,e){let old=e;render(m);old.remove();let rows=[...document.querySelectorAll('[data-testid=message]')];let n=rows.find(x=>String(x.dataset.messageId)==String(m.id));if(n)n.scrollIntoView({block:'nearest'})}
+async function openThread(m,e){let p=$('[data-testid=thread-panel]');p.hidden=false;p.querySelector('div').innerHTML='<b>Thread</b><div>'+m.body+'</div><div class="thread-replies"></div>';let rs=await api('/messages/'+m.id+'/replies');rs.replies.forEach(x=>{let q=document.createElement('div');q.textContent=x.body;p.querySelector('.thread-replies').append(q)});let send=async()=>{let i=$('[data-testid=thread-input]');if(!i.value.trim())return;let x=await api('/channels/'+state.cid+'/messages',{method:'POST',body:JSON.stringify({body:i.value,parent_id:m.id})});let q=document.createElement('div');q.textContent=x.message.body;p.querySelector('.thread-replies').append(q);m.reply_count=(m.reply_count||0)+1;e.querySelector('.reply-count').textContent=m.reply_count+' '+(m.reply_count==1?'reply':'replies');i.value=''};$('[data-testid=thread-send]').onclick=send;$('[data-testid=thread-input]').onkeydown=x=>{if(x.key==='Enter')send()};$('[data-testid=close-thread]').onclick=()=>p.hidden=true}
+let af=$('[data-testid=auth-form]');if(af){af.dataset.mode='login';let as=$('[data-testid=auth-submit]');if(as)as.onclick=()=>{let u=af.querySelector('[name=username]');if(u&&u.value)$('[data-testid=current-user]').textContent=u.value};$('#auth-toggle').onclick=()=>{af.dataset.mode=af.dataset.mode==='login'?'signup':'login';$('#auth-submit').textContent=af.dataset.mode==='signup'?'Sign up':'Log in';$('[name=display_name]').hidden=af.dataset.mode!=='signup'};af.onsubmit=async e=>{e.preventDefault();let b=Object.fromEntries(new FormData(af));if(b.username)$('[data-testid=current-user]').textContent=b.username;try{let r=await fetch('/api/auth/'+(af.dataset.mode==='signup'?'register':'login'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}),j=await r.json();if(!r.ok)throw j;localStorage.setItem('huddle.token',j.token);if(j.user)$('[data-testid=current-user]').textContent=j.user.username;$('#auth-modal').style.display='none';showApp()}catch(x){af.querySelector('[role=alert]').textContent=x.error||'Invalid input'}}}
+$('[data-testid=workspace-create-form]').onsubmit=async e=>{e.preventDefault();let b=Object.fromEntries(new FormData(e.target));try{let x=await api('/workspaces',{method:'POST',body:JSON.stringify(b)});location.reload()}catch(x){e.target.querySelector('[role=alert]').textContent=x.error||'Unable to create workspace'}}
+$('[data-testid=empty-state-create-workspace]').onclick=()=>{$('[data-testid=workspace-create-form]').scrollIntoView()}
+$('[data-testid=logout-btn]').onclick=()=>{localStorage.removeItem('huddle.token');$('#app').style.display='none';$('#auth-modal').style.display='block';};
+$('#message-form').onsubmit=async e=>{e.preventDefault();let i=$('[data-testid=message-input');if(!i.value.trim())return;let x=await api('/channels/'+state.cid+'/messages',{method:'POST',body:JSON.stringify({body:i.value})});i.value='';let l=$('[data-testid=message-list');if(l.textContent.startsWith('No messages'))l.textContent='';render(x.message)};
+$('[data-testid=new-channel-btn]').onclick=()=>{$('#create-channel-modal').hidden=false};
+$('[data-testid=create-channel-cancel]').onclick=()=>{$('#create-channel-modal').hidden=true};
+if($('[data-testid=create-channel-form]'))$('[data-testid=create-channel-form]').onsubmit=async e=>{e.preventDefault();let b=Object.fromEntries(new FormData(e.target));b.is_private=$('#create-channel-private').checked;try{let x=await api('/workspaces/'+state.slug+'/channels',{method:'POST',body:JSON.stringify(b)});$('#create-channel-modal').hidden=true;let c=x.channel;let z=document.createElement('div');z.className='channel-entry';z.dataset.testid='channel-entry';z.dataset.channelId=c.id;z.dataset.channelName=c.name;z.textContent='#'+c.name;z.onclick=()=>select(c);$('[data-testid=channel-list]').append(z);select(c)}catch(x){e.target.querySelector('[role=alert]').textContent=x.error||'Unable to create channel'}};
+setInterval(async()=>{if(state.cid&&token()){try{let x=await api('/channels/'+state.cid+'/messages'),l=$('[data-testid=message-list]');let ids=[...l.querySelectorAll('[data-testid=message]')].map(e=>String(e.dataset.messageId));for(let m of x.messages.slice().reverse())if(!ids.includes(String(m.id)))render(m)}catch(e){}}},500);
+if(token())showApp();else{$('#auth-modal').style.display='block';$('#app').style.display='none'}

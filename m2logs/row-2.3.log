@@ -1,0 +1,5 @@
+00:00:57 run 2.3 repeat 1 started (official); log: m2logs/20261110-000057-run2.3-rep1-official.log
+00:01:17 run 2.3 repeat 2 started (official); log: m2logs/20261110-000057-run2.3-rep2-official.log
+Waiting for 2 repeat(s) of run 2.3 (up to ~60 min). Follow one with: tail -f m2logs/20261110-000057-run2.3-rep1-official.log
+2026-11-10 00:10 run=2.3 repeat=1 tag=official job=jobs/2026-11-10__00-00-58 cost=$0.52 exit=1 spec="m2-v2 run=2.3 feedback=verbose"
+2026-11-10 00:12 run=2.3 repeat=2 tag=official job=jobs/2026-11-10__00-01-18 cost=$0.78 exit=1 spec="m2-v2 run=2.3 feedback=verbose"

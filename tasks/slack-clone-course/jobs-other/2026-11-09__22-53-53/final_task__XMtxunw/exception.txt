@@ -1,0 +1,102 @@
+Traceback (most recent call last):
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 683, in run_forever
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 2004, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/selectors.py", line 548, in select
+    kev_list = self._selector.control(None, max_ev, timeout)
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/cli/jobs.py", line 317, in _handle_sigterm
+    raise KeyboardInterrupt
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 712, in run_until_complete
+    self.run_forever()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 687, in run_forever
+    self._run_forever_cleanup()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/base_events.py", line 671, in _run_forever_cleanup
+    events._set_running_loop(None)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/cli/jobs.py", line 317, in _handle_sigterm
+    raise KeyboardInterrupt
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 351, in run
+    await self._prepare()
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 389, in _prepare
+    await self._setup_agent()
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/trial/trial.py", line 1180, in _setup_agent
+    await asyncio.wait_for(
+    ...<2 lines>...
+    )
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 622, in setup
+    await self.install(environment)
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/mini_swe_agent_local.py", line 74, in install
+    await self.exec_as_agent(
+    ...<16 lines>...
+    )
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 592, in exec_as_agent
+    return await self._exec(
+           ^^^^^^^^^^^^^^^^^
+        environment, command, env=env, cwd=cwd, timeout_sec=timeout_sec
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/agents/installed/base.py", line 543, in _exec
+    result = await environment.exec(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/environments/docker/docker.py", line 1096, in exec
+    return await self._compose_exec(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/environments/docker/docker.py", line 1173, in _compose_exec
+    return await self._run_docker_compose_command(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/environments/docker/docker.py", line 649, in _run_docker_compose_command
+    result = await self._collect_buffered_output(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/.venv/lib/python3.13/site-packages/harbor/environments/docker/docker.py", line 679, in _collect_buffered_output
+    stdout_bytes, stderr_bytes = await process.communicate(input=stdin_data)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/subprocess.py", line 201, in communicate
+    stdin, stdout, stderr = await tasks.gather(stdin, stdout, stderr)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/subprocess.py", line 181, in _read_stream
+    output = await stream.read()
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/streams.py", line 723, in read
+    block = await self.read(self._limit)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/streams.py", line 730, in read
+    await self._wait_for_data('read')
+  File "/Users/gerbear/.local/share/uv/python/cpython-3.13.5-macos-aarch64-none/lib/python3.13/asyncio/streams.py", line 539, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError

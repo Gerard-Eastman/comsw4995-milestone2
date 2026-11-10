@@ -1,0 +1,60 @@
+# verify run=5.3 label=5.3-rep1-final src=/home/claude/m2art/2026-11-09__23-34-36.app.tgz Tue Nov 10 00:11:22 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 2.0s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/a/checks/check_a_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/a/checks/check_a_2.sh
+RESULT: 7 passed, 0 failed
+== /spec/a/checks/check_a_3.sh
+RESULT: 8 passed, 0 failed
+== /spec/a/checks/check_a_4.sh
+RESULT: 11 passed, 0 failed
+== /spec/b/checks/check_b_1.sh
+RESULT: 8 passed, 0 failed
+== /spec/b/checks/check_b_2.sh
+RESULT: 7 passed, 0 failed
+== /spec/b/checks/check_b_3.sh
+RESULT: 6 passed, 0 failed
+== /spec/b/checks/check_b_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/b/checks/check_b_5.sh
+RESULT: 9 passed, 0 failed
+== /spec/c/checks/check_c_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_3.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_5.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_6.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_1.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_2.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_3.sh
+RESULT: 3 passed, 0 failed
+== /spec/e/checks/check_e_1.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_3.sh
+RESULT: 6 passed, 0 failed
+== /spec/e/checks/check_e_4.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_5.sh
+RESULT: 7 passed, 0 failed
+== /spec/e/checks/check_e_6.sh
+FAIL E6.4 open-thread-btn opens thread-panel; a reply appears there and the parent shows '1 reply' then '2 replies': parent reply-count after the second reply: expected [data-testid="message"][data-message-id="300"] .reply-count to contain '2 replies', got '1 reply'
+FAIL E6.7 layout: coloured sidebar, message pane and thread panel side by side; others' new messages appear live: a message posted by another user should appear within 4s: expected [data-testid="message-list"] to contain 'live from someone else', got 'parent for layout ui9p282nbb0 repliesEditDeleteReplies😀'
+RESULT: 5 passed, 2 failed
+== /spec/e/checks/check_e_7.sh
+FAIL E7.5 join-workspace-form: a valid code joins and switches workspace; an unknown code shows join-workspace-error: unexpected response (TimeoutError: Page.fill: Timeout 4000ms exceeded.
+FAIL E7.6 channel settings: title, channel-member-rows, add member, topic, archive then unarchive (modal stays open), close: channel-settings-title: expected [data-testid="channel-settings-title"] to contain '#cfg-sne5', got ''
+RESULT: 4 passed, 2 failed

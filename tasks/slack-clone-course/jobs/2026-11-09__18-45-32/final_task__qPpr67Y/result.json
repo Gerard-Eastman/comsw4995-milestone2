@@ -1,0 +1,109 @@
+{
+    "id": "f664c11c-c52b-4697-a285-0739b195ec5c",
+    "task_name": "abundant/slack-clone",
+    "trial_name": "final_task__qPpr67Y",
+    "trial_uri": "file:///Users/gerbear/Desktop/Adv%20software%20w%20AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__18-45-32/final_task__qPpr67Y",
+    "task_id": {
+        "path": "tasks/slack-clone-course/course-staff-files/final_task"
+    },
+    "source": null,
+    "task_checksum": "46f1f66d286e31c37aa2f8bb7b1032f380c1e0e9411e6107b6e550677ede002e",
+    "config": {
+        "task": {
+            "path": "tasks/slack-clone-course/course-staff-files/final_task",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "final_task__qPpr67Y",
+        "trials_dir": "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/tasks/slack-clone-course/jobs/2026-11-09__18-45-32",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 4.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mini_swe_agent_local:MiniSweAgentLocal",
+            "import_path": null,
+            "model_name": "openai/gpt-5.6-luna",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "config_file": "/Users/gerbear/Desktop/Adv software w AI/course_milestone_2/tasks/slack-clone-course/course-staff-files/final_task/agent_llm_config/mswea-openai-gpt-5.6-luna-no-reasoning.yaml",
+                "cost_limit": 3
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": true
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "b31f413a-cf27-4961-8753-865c4a187bd4"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent-local",
+        "version": "2.4.6",
+        "model_info": {
+            "name": "gpt-5.6-luna",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2010365,
+        "n_cache_tokens": 1957279,
+        "n_output_tokens": 17791,
+        "cost_usd": 0.4657644200000001,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "exception_info": null,
+    "started_at": "2026-11-09T23:45:34.654575Z",
+    "finished_at": "2026-11-09T23:52:36.451855Z",
+    "environment_setup": {
+        "started_at": "2026-11-09T23:45:34.728732Z",
+        "finished_at": "2026-11-09T23:46:24.917668Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-09T23:46:24.918446Z",
+        "finished_at": "2026-11-09T23:47:32.892440Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-09T23:47:32.901088Z",
+        "finished_at": "2026-11-09T23:52:24.470181Z"
+    },
+    "verifier": null,
+    "step_results": null
+}

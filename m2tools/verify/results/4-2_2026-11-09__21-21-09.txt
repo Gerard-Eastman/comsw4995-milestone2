@@ -1,0 +1,50 @@
+# verify run=4 label=4-rep2-a1 src=/home/claude/m2art/2026-11-09__21-21-09.app.tgz Mon Nov  9 22:13:07 EST 2026
+RESTART OK: 8000, 8001, 8002 healthy
+
+took 2.6s
+== /spec/base/checks/check_base.sh
+RESULT: 13 passed, 0 failed
+== /spec/c/checks/check_c_1.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_3.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_4.sh
+RESULT: 6 passed, 0 failed
+== /spec/c/checks/check_c_5.sh
+RESULT: 5 passed, 0 failed
+== /spec/c/checks/check_c_6.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_1.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_2.sh
+RESULT: 4 passed, 0 failed
+== /spec/d/checks/check_d_3.sh
+RESULT: 3 passed, 0 failed
+== /spec/e/checks/check_e_1.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_2.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_3.sh
+FAIL E3.5 web posts reach joined IRC clients within 2s as ':<user>!<user>@huddle PRIVMSG #c :body'; no echo to the sender: expected ':m9inck4v5!m9inck4v5@huddle PRIVMSG #ws-3062i7qf/general :from the web' within 2s, got []
+FAIL E3.6 with node 1 SIGKILLed, bridging still works both ways (8000 -> IRC, IRC -> WebSocket on 8002): IRC client got no PRIVMSG for a post on 8000 while 8001 was down: []
+RESULT: 4 passed, 2 failed
+== /spec/e/checks/check_e_4.sh
+RESULT: 5 passed, 0 failed
+== /spec/e/checks/check_e_5.sh
+FAIL E5.3 valid sign-up auto-logs in (token in localStorage['huddle.token'], modal hidden, current-user); login and ?token= work: current-user after sign-up: expected [data-testid="current-user"] to contain 'sggaptlh8c', got 'Sign Up'
+FAIL E5.4 a user with no workspace sees empty-state-create-workspace; creating one shows its name and #general: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E5.5 channel-list has one channel-entry per channel (data-channel-id/name, '#' prefix); one is selected after login: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E5.6 new-channel-btn -> create-channel-modal; create switches to it; duplicate shows [role=alert]; cancel hides: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E5.7 clicking an entry switches channel: title '#name', topic, its messages; an empty channel shows copy, no rows: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+RESULT: 2 passed, 5 failed
+== /spec/e/checks/check_e_6.sh
+FAIL E6.1 send-btn and Enter post a message (last row, input cleared); a blank message is not posted: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E6.2 hover toolbar [data-action=edit]: input[name=edit-body], Enter saves; '(edited)' shows and survives reload: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E6.3 hover toolbar [data-action=delete] removes the row (no dialog); still gone after reload: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E6.4 open-thread-btn opens thread-panel; a reply appears there and the parent shows '1 reply' then '2 replies': opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E6.5 reaction-button opens emoji-picker (>= 8 emoji-option); picking one shows a reaction-chip with count; clicking it removes: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E6.6 logout-btn clears localStorage['huddle.token'] and shows #auth-modal; logging in again restores the workspace: opening /?token=<valid token> did not hide #auth-modal within 4s (page errors: [])
+FAIL E6.7 layout: coloured sidebar, message pane and thread panel side by side; others' new messages appear live: not run, check time budget used up (a slow endpoint?)
+RESULT: 0 passed, 7 failed
